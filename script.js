@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
             @media print {
                 .banner {
                     height: 150px;
-                    background: #667eea !important;
+                    background: #6c757d !important;
                 }
                 .banner h1 {
                     font-size: 2rem !important;
