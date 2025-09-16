@@ -76,17 +76,28 @@ body {
 
 .headshot-container {
     position: relative;
-}
-
-.headshot {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    object-fit: cover;
+    overflow: hidden;
     border: 4px solid #6c757d;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.headshot {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: var(--headshot-position, 75% 35%);
+    transform: scale(var(--headshot-zoom, 1));
+    transform-origin: center;
     display: none;
 }
+
+/* When a real headshot is set, show it and hide the placeholder */
+#headshotImg[src]:not([src='headshot-placeholder.jpg']) { display: block; }
+#headshotImg[src]:not([src='headshot-placeholder.jpg']) + #headshotPlaceholder { display: none; }
 
 .headshot-placeholder {
     width: 200px;
@@ -223,7 +234,7 @@ body {
 .achievements li {
     position: relative;
     padding-left: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     color: #555;
     line-height: 1.6;
 }
@@ -347,6 +358,36 @@ footer p {
     opacity: 0.8;
 }
 
+/* Print improvements */
+@media print {
+    .banner {
+        height: 150px !important;
+        background: #6c757d !important;
+    }
+    .banner h1 { font-size: 2rem !important; }
+    .tagline { font-size: 1rem !important; }
+    .container {
+        margin-top: 0 !important;
+        box-shadow: none !important;
+        padding: 1rem !important;
+    }
+    .headshot-container, .headshot, .headshot-placeholder {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    .resume-section {
+        page-break-inside: avoid;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    footer {
+        margin-top: 1rem !important;
+        padding: 1rem !important;
+        background: none !important;
+        color: #333 !important;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .banner h1 {
@@ -368,7 +409,7 @@ footer p {
         gap: 1.5rem;
     }
     
-    .headshot, .headshot-placeholder {
+    .headshot-container, .headshot, .headshot-placeholder {
         width: 150px;
         height: 150px;
         margin: 0 auto;
@@ -414,7 +455,7 @@ footer p {
         font-size: 1rem;
     }
     
-    .headshot, .headshot-placeholder {
+    .headshot-container, .headshot, .headshot-placeholder {
         width: 120px;
         height: 120px;
     }
