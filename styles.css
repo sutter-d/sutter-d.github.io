@@ -89,7 +89,7 @@ body {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    object-position: var(--headshot-position, 75% 35%);
+    object-position: var(--headshot-position, 50% 35%);
     transform: scale(var(--headshot-zoom, 1));
     transform-origin: center;
     display: none;
