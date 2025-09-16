@@ -11,6 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
     fileInput.style.display = 'none';
     document.body.appendChild(fileInput);
     
+    // If a non-placeholder image is already set, show it and hide placeholder
+    try {
+        const src = headshotImg && headshotImg.getAttribute('src');
+        if (src && !src.includes('headshot-placeholder.jpg')) {
+            headshotImg.style.display = 'block';
+            headshotPlaceholder.style.display = 'none';
+        }
+    } catch (e) {}
+
     // Handle placeholder click
     headshotPlaceholder.addEventListener('click', function() {
         fileInput.click();
@@ -73,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
             @media print {
                 .banner {
                     height: 150px;
-                    background: #667eea !important;
+                    background: #6c757d !important;
                 }
                 .banner h1 {
                     font-size: 2rem !important;
